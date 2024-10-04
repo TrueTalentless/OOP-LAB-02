@@ -7,7 +7,7 @@ public class Main {
     private JFrame mainFrame;
     private DefaultTableModel tableModel;
     private JTable dataTable;
-    private JButton addDogButton, editDogButton, deleteDogButton;
+    private JButton addDogButton, editDogButton, deleteDogButton, loadDogButton, saveDogButton;
     private JTextField searchField;
     private JComboBox<String> breedComboBox;
 
@@ -19,15 +19,19 @@ public class Main {
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Создание кнопок
-        addDogButton = new JButton("Добавить собаку");
-        editDogButton = new JButton("Изменить данные собаки");
-        deleteDogButton = new JButton("Удалить собаку");
+        addDogButton = new JButton("Добавить");
+        editDogButton = new JButton("Изменить");
+        deleteDogButton = new JButton("Удалить");
+        loadDogButton = new JButton("Загрузить");
+        saveDogButton = new JButton("Сохранить");
 
         // Панель инструментов с кнопками
         JToolBar toolBar = new JToolBar("Панель инструментов");
         toolBar.add(addDogButton);
         toolBar.add(editDogButton);
         toolBar.add(deleteDogButton);
+        toolBar.add(loadDogButton);
+        toolBar.add(saveDogButton);
 
         // Добавление панели инструментов в верхнюю часть окна
         mainFrame.setLayout(new BorderLayout());
