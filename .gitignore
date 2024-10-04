@@ -1,4 +1,4 @@
-### IntelliJ IDEA ###
 out/
 .idea
-OOP-LAB-02.iml
+!**/src/main/**/out/
+!**/src/test/**/out/

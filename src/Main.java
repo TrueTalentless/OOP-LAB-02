@@ -2,7 +2,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
-public class lab02 {
+public class Main {
     // Объявление графических компонентов
     private JFrame mainFrame;
     private DefaultTableModel tableModel;
@@ -68,6 +68,6 @@ public class lab02 {
 
     public static void main(String[] args) {
         // Создание и отображение формы
-        new lab02().show();
+        new Main().show();
     }
 }
