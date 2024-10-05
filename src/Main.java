@@ -13,7 +13,7 @@ public class Main {
     private JTable dataTable;
     private JButton addDogButton, editDogButton, deleteDogButton, loadDogButton, saveDogButton;
     private JTextField searchField;
-    private JComboBox<String> breedComboBox;
+    private JComboBox<String> searchCriteriaComboBox;
 
     /**
      * Метод для построения и визуализации экранной формы.
@@ -24,6 +24,9 @@ public class Main {
         mainFrame.setSize(800, 400);
         mainFrame.setLocation(100, 100);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Создание основного контейнера с BorderLayout
+        JPanel mainPanel = new JPanel(new BorderLayout());
 
         // Создание кнопок для панели инструментов
         addDogButton = new JButton("Добавить");
@@ -40,44 +43,47 @@ public class Main {
         toolBar.add(loadDogButton);
         toolBar.add(saveDogButton);
 
-        // Добавление панели инструментов в верхнюю часть окна
-        mainFrame.setLayout(new BorderLayout());
-        mainFrame.add(toolBar, BorderLayout.NORTH);
+        // Добавление панели инструментов в верхнюю часть mainPanel
+        mainPanel.add(toolBar, BorderLayout.NORTH);
 
         // Создание таблицы с данными о собаках
-        String[] columns = {"Кличка", "Порода", "Владелец", "Судья"};
+        String[] columns = {"Кличка", "Порода", "Владелец", "Судья", "Награды"};
         String[][] data = {
-                {"Рекс", "Немецкая овчарка", "Иванов И.И.", "Петров П.П."},
-                {"Барон", "Доберман", "Петров П.П.", "Сидоров С.С."}
+                {"Рекс", "Немецкая овчарка", "Иванов И.И.", "Петров П.П.", "Лучший в породе"},
+                {"Барон", "Доберман", "Петров П.П.", "Сидоров С.С.", "Нет наград"},
+                {"Лесси", "Колли", "Смирнова А.А.", "Кузнецов К.К.", "Чемпион"},
+                {"Бобик", "Бигль", "Ковалев В.В.", "Иванов И.И.", "Нет наград"}
         };
         tableModel = new DefaultTableModel(data, columns);
         dataTable = new JTable(tableModel);
         JScrollPane scrollPane = new JScrollPane(dataTable);
 
-        // Добавление таблицы в центральную часть окна
-        mainFrame.add(scrollPane, BorderLayout.CENTER);
+        // Добавление таблицы в центральную часть mainPanel
+        mainPanel.add(scrollPane, BorderLayout.CENTER);
 
-        // Создание элементов фильтрации и поиска
-        breedComboBox = new JComboBox<>(new String[]{"Все породы", "Немецкая овчарка", "Доберман"});
+        // Создание элементов для простого поиска
+        searchCriteriaComboBox = new JComboBox<>(new String[]{"По породе", "По владельцу", "По судье"});
         searchField = new JTextField(15);
         JButton searchButton = new JButton("Поиск");
 
         // Создание панели поиска и фильтрации
         JPanel searchPanel = new JPanel();
-        searchPanel.add(new JLabel("Фильтр по породе:"));
-        searchPanel.add(breedComboBox);
-        searchPanel.add(new JLabel("Поиск по владельцу:"));
+        searchPanel.add(searchCriteriaComboBox);
         searchPanel.add(searchField);
         searchPanel.add(searchButton);
 
-        // Добавление панели поиска в нижнюю часть окна
-        mainFrame.add(searchPanel, BorderLayout.SOUTH);
+        // Добавление панели поиска в нижнюю часть mainPanel
+        mainPanel.add(searchPanel, BorderLayout.SOUTH);
+
+        // Добавление mainPanel в главное окно
+        mainFrame.add(mainPanel);
 
         // Отображение окна
         mainFrame.setVisible(true);
     }
 
     /**
+     * Главный метод для запуска приложения.
      * @param args аргументы командной строки
      */
     public static void main(String[] args) {
